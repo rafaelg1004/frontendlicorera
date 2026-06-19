@@ -15,9 +15,12 @@ export const AuthProvider = ({ children }) => {
 
     if (token && userData) {
       setUser(JSON.parse(userData));
+      if (pathname === '/') {
+        router.push('/dashboard');
+      }
     } else {
-      if (pathname !== '/login') {
-        router.push('/login');
+      if (pathname !== '/') {
+        router.push('/');
       }
     }
   }, [pathname, router]);
@@ -26,19 +29,19 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
-    router.push('/');
+    router.push('/dashboard');
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setUser(null);
-    router.push('/login');
+    router.push('/');
   };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      {(!user && pathname !== '/login') ? null : children}
+      {(!user && pathname !== '/') ? null : children}
     </AuthContext.Provider>
   );
 };

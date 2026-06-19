@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
-  const isLogin = pathname === '/login';
+  const isLogin = pathname === '/';
 
   return (
     <AuthProvider>

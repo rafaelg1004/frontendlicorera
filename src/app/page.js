@@ -1,10 +1,10 @@
-import Dashboard from '@/components/Dashboard/Dashboard';
+import LoginForm from '@/components/LoginForm/LoginForm';
 
 export const metadata = {
-  title: 'Dashboard | Bodega Elite',
-  description: 'Panel de control principal',
+  title: 'Iniciar Sesión | Bodega Elite',
+  description: 'Inicia sesión en el sistema POS',
 };
 
-export default function HomePage() {
-  return <Dashboard />;
+export default function LoginPage() {
+  return <LoginForm />;
 }
