@@ -1,6 +1,7 @@
 'use client'
 import { createContext, useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import { getCookie, setCookie, eraseCookie } from '@/utils/cookies';
 
 export const AuthContext = createContext();
 
@@ -10,8 +11,8 @@ export const AuthProvider = ({ children }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
+    const token = getCookie('token');
+    const userData = getCookie('user');
 
     if (token && userData) {
       setUser(JSON.parse(userData));
@@ -26,15 +27,15 @@ export const AuthProvider = ({ children }) => {
   }, [pathname, router]);
 
   const login = (userData, token) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
+    setCookie('token', token, 1); // Expira en 1 día
+    setCookie('user', JSON.stringify(userData), 1);
     setUser(userData);
     router.push('/dashboard');
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    eraseCookie('token');
+    eraseCookie('user');
     setUser(null);
     router.push('/');
   };
