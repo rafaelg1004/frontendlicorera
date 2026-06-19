@@ -1,14 +1,17 @@
 'use client'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ShoppingCart, Package, Users, Settings, Wine } from 'lucide-react';
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import { Home, ShoppingCart, Package, Users, Settings, Wine, LogOut } from 'lucide-react';
 import './Sidebar.css';
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const { logout } = useContext(AuthContext);
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: Home },
+    { name: 'Dashboard', path: '/dashboard', icon: Home },
     { name: 'Punto de Venta', path: '/pos', icon: ShoppingCart },
     { name: 'Inventario', path: '/inventario', icon: Package },
     { name: 'Clientes', path: '/clientes', icon: Users },
@@ -41,9 +44,13 @@ const Sidebar = () => {
       </nav>
 
       <div className="sidebar-footer">
-        <button className="nav-link">
+        <button className="nav-link" style={{ width: '100%', background: 'transparent', border: 'none', textAlign: 'left', cursor: 'pointer', marginBottom: '10px' }}>
           <Settings size={20} />
           <span>Configuración</span>
+        </button>
+        <button onClick={logout} className="nav-link" style={{ width: '100%', background: 'transparent', border: 'none', textAlign: 'left', cursor: 'pointer', color: 'var(--danger)' }}>
+          <LogOut size={20} />
+          <span>Cerrar Sesión</span>
         </button>
       </div>
     </aside>
