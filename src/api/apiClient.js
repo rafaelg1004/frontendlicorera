@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+let rawBaseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+if (rawBaseURL && !rawBaseURL.endsWith('/api') && !rawBaseURL.endsWith('/api/')) {
+  rawBaseURL = `${rawBaseURL.replace(/\/$/, '')}/api`;
+}
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
+  baseURL: rawBaseURL,
 });
 
 // Interceptor para pegar el JWT en cada petición
