@@ -1,5 +1,5 @@
 'use client'
-import Sidebar from '@/components/Sidebar';
+import Sidebar from '@/components/Sidebar/Sidebar';
 import { AuthProvider } from '@/context/AuthContext';
 import { usePathname } from 'next/navigation';
 
