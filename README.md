@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Licorera Frontend
 
-## Getting Started
+Aplicación web para el sistema POS y de gestión de inventarios de una licorera/bodega. Construido con **Next.js**, **React**, e interfaces diseñadas con CSS puro (Vanilla CSS).
 
-First, run the development server:
+## 🚀 Tecnologías Principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js (App Router):** Framework de React para renderizado rápido, enrutamiento eficiente y optimización de SEO.
+- **React:** Biblioteca para construir interfaces de usuario interactivas.
+- **Vanilla CSS:** Estilos implementados desde cero, utilizando un diseño moderno (Glassmorphism, Dark Mode) sin depender de frameworks de CSS externos.
+- **Axios:** Cliente HTTP para la comunicación con la API del Backend.
+- **Lucide React:** Biblioteca de iconos ligeros y consistentes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Diseño y UI/UX
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+El frontend está diseñado priorizando la **Excelencia Visual** y una experiencia premium:
+- Interfaz en **Dark Mode** con contrastes precisos.
+- Uso de **Glassmorphism** (fondos translúcidos y desenfoques) para paneles y modales.
+- Micro-animaciones fluidas en hovers e interacciones.
+- Diseño totalmente responsivo para adaptarse a diferentes resoluciones (Puntos de venta, tablets o escritorio).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Estructura del Proyecto
 
-## Learn More
+El proyecto utiliza la estructura de directorios del App Router de Next.js:
 
-To learn more about Next.js, take a look at the following resources:
+- `/src/app`: Rutas de la aplicación (páginas y layouts).
+  - `/login`: Pantalla de inicio de sesión de usuarios/empleados.
+  - `layout.js` / `ClientLayout.js`: Estructura base de la aplicación.
+- `/src/components`: Componentes reutilizables de la interfaz (botones, inputs, modales, etc.).
+- `/src/hooks`: Custom Hooks para manejar la lógica y estado local.
+- `/src/services`: Servicios de integración (Axios) para comunicarse con los endpoints del backend.
+- `/public`: Archivos estáticos como imágenes y fuentes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💻 Instalación Local
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Ve al directorio `frontend`.
+2. Instala las dependencias necesarias:
+   ```bash
+   npm install
+   ```
+3. Crea un archivo `.env.local` en la raíz de `frontend` para configurar las variables de entorno:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:3000/api
+   ```
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+5. Abre [http://localhost:3001](http://localhost:3001) (o el puerto asignado) en tu navegador para ver la aplicación en funcionamiento.
 
-## Deploy on Vercel
+## 📜 Scripts Disponibles
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run dev`: Inicia el entorno de desarrollo con recarga en caliente.
+- `npm run build`: Compila la aplicación para producción de forma optimizada.
+- `npm start`: Inicia el servidor de producción (después de ejecutar `build`).
+- `npm run lint`: Ejecuta ESLint para buscar y arreglar problemas en el código fuente.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔗 Integración con Backend
+
+El frontend se conecta con la API RESTful del backend para gestionar inventarios, procesar ventas y validar la autenticación (JWT). Las peticiones utilizan interceptores de Axios para inyectar automáticamente los tokens de seguridad y gestionar la expiración de la sesión de manera transparente para el usuario.
