@@ -1,0 +1,23 @@
+# Licorera Frontend AI Instructions
+
+## Arquitectura de Next.js (App Router) y Componentes
+
+1. **Pages Limpias (`src/app/**/page.js`)**:
+   - Los archivos `page.js` dentro de `src/app` **NUNCA** deben contener lógica de negocio, manejo de estado (no usar `use client`, `useState`, `useEffect`) ni código CSS.
+   - Su única responsabilidad es importar un componente de vista principal desde `src/components/` y renderizarlo.
+   - Deben mantenerse como Server Components para manejar metadatos (SEO) de ser necesario.
+
+2. **Estructura de Componentes (`src/components/`)**:
+   - **TODO** el código, estado y estilos de UI deben ir dentro de `src/components/`.
+   - Cada componente **DEBE** tener su propia carpeta dedicada con el nombre del componente.
+   - Dentro de la carpeta del componente deben existir exactamente sus archivos correspondientes. Ejemplo:
+     ```
+     src/components/LoginForm/
+       ├── LoginForm.js   (Lógica, hooks, 'use client')
+       └── LoginForm.css  (Estilos encapsulados importados en el JS)
+     ```
+   - No colocar archivos `.js` o `.css` sueltos en la raíz de `src/components/`.
+
+3. **Manejo de Estado y Peticiones**:
+   - Las peticiones HTTP deben hacerse siempre usando la instancia configurada de Axios desde `src/api/apiClient.js` para asegurar que el token JWT se envíe y las URLs base se manejen con `NEXT_PUBLIC_API_URL`.
+   - El manejo global del estado de autenticación y redirecciones base se hace a través de `AuthContext.js`.
