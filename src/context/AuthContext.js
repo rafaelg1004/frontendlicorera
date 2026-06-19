@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = getCookie('token');
-    const userData = getCookie('user');
+    const userData = localStorage.getItem('user');
 
     if (token && userData) {
       setUser(JSON.parse(userData));
@@ -28,14 +28,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData, token) => {
     setCookie('token', token, 1); // Expira en 1 día
-    setCookie('user', JSON.stringify(userData), 1);
+    localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
     router.push('/dashboard');
   };
 
   const logout = () => {
     eraseCookie('token');
-    eraseCookie('user');
+    localStorage.removeItem('user');
     setUser(null);
     router.push('/');
   };
